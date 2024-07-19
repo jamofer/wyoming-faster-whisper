@@ -127,6 +127,7 @@ async def main() -> None:
         device=args.device,
         compute_type=args.compute_type,
     )
+    whisper_model = faster_whisper.BatchedInferencePipeline(model=whisper_model, batch_size=16)
 
     server = AsyncServer.from_uri(args.uri)
     _LOGGER.info("Ready")
